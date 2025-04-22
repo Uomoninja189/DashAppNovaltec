@@ -1,0 +1,42 @@
+.card-container {
+    background-color: white;
+    padding: 2rem;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-title {
+    text-align: center;
+    color: #2c3e50;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.card-value {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
+
+
+
+.text-green {
+    color: #27ae60;
+}
+
+.text-red{
+    color: #e74c3c;
+}

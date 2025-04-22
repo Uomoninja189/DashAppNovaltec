@@ -1,0 +1,10 @@
+Scelte per trattare i dati:
+-MESE diverso da quello attuale -> IGNORO
+-IMPONIBILE vuoto o 0   -> IGNORO
+-QUANTITA' vuota    -> METTO A 1
+-CATEGORIA assente, vuota   -> METTO 'ACC'
+-FATTURA saltata o NOTE inzia con saltata   -> RAGGRUPPO IN 'Saltata'
+-FATTURA presente il numero     -> RAGGRUPPO IN 'Effettuata'
+
+Fullscreen: https://community.plotly.com/t/plotly-visuals-full-screen/86229
+
