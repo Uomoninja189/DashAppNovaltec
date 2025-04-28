@@ -22,6 +22,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.card-variazione {
+    font-size: 1.2rem;
+    color: #dd1e35; /* rosso */
+    margin-top: 0.2rem;
+}
+
 .row-container {
     display: flex;
     flex-direction: row;
@@ -34,9 +40,77 @@
 
 
 .text-green {
-    color: #27ae60;
+    color: #5ac47d;
 }
 
 .text-red{
-    color: #e74c3c;
+    color: #d1515f;
+}
+
+/* Stile generale tabella */
+.dash-table-container {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+/* Celle */
+.dash-cell {
+    padding: 100px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    color: #333;
+    background-color: #fafafa;
+    border: 1px solid black;
+    white-space: normal;
+    height: auto;
+}
+
+/* Header */
+.dash-header {
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #0074D9 !important;
+    color: white !important;
+    text-align: center;
+    border: none !important;
+}
+
+.navbar-nav .nav-link {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+}
+.navbar-nav .nav-link:hover {
+    color: #0074D9 !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: #0074D9 !important;
+    border-bottom: 2px solid #0074D9;
+}
+.navbar-nav .nav-link.active:hover {
+    color: #0074D9 !important;
+    border-bottom: 2px solid #0074D9;
+}
+
+.custom-dropdown {
+    width: 80%!important;
+    margin-bottom: 1em;
+    font-family: 'Roboto', sans-serif; 
+  }
+
+.custom-card {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+#page{
+    background-color: rgb(244,244,244);
 }
