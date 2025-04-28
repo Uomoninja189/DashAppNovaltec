@@ -4,4 +4,3 @@ plotly
 gunicorn
 dash-bootstrap-components
 unidecode
-base64
