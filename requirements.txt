@@ -1,5 +1,7 @@
-dash==3.0.2
+dash==3.0.3
 pandas
 plotly
 gunicorn
 dash-bootstrap-components
+unidecode
+base64
