@@ -1,4 +1,4 @@
-from app import app
+from app import app, server
 import callbacks.callback_report
 import callbacks.callback_confronto
 import callbacks.callback_crea
