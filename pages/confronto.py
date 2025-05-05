@@ -1,5 +1,6 @@
 from dash import html, dcc, dash_table 
 from funzioni import *
+from app import *
 import dash
 import dash_bootstrap_components as dbc
 
@@ -99,16 +100,35 @@ layout = dbc.Container([
                                 # Upload file invece dei Dropdown Anni
                                 dbc.Row([
                                     dbc.Col([
-                                        dbc.Label(f"Anno {idx}"),
+                                        dbc.Label(f"Anno primo"),
                                         dcc.Dropdown(
-                                            id={"type": "anno-dropdown", "index": idx},
-                                            options=[{'label': anno, 'value': anno} for anno in carica_anni()],
+                                            id='anno-dropdown-confronto-primo',
                                             placeholder="Seleziona...",
                                             style={'marginBottom': '1em', 'fontFamily': 'Roboto, sans-serif'},
                                             searchable=False
                                         ),
-                                        dcc.Store(id={"type": "anno-data", "index": idx})
-                                    ], width=4) for idx in indici
+                                        dcc.Store(id='store-anno-confronto-primo')
+                                    ], width=4),
+                                    dbc.Col([
+                                        dbc.Label(f"Anno secondo"),
+                                        dcc.Dropdown(
+                                            id='anno-dropdown-confronto-secondo',
+                                            placeholder="Seleziona...",
+                                            style={'marginBottom': '1em', 'fontFamily': 'Roboto, sans-serif'},
+                                            searchable=False
+                                        ),
+                                        dcc.Store(id='store-anno-confronto-secondo')
+                                    ], width=4) ,
+                                    dbc.Col([
+                                        dbc.Label(f"Anno terzo"),
+                                        dcc.Dropdown(
+                                            id='anno-dropdown-confronto-terzo',
+                                            placeholder="Seleziona...",
+                                            style={'marginBottom': '1em', 'fontFamily': 'Roboto, sans-serif'},
+                                            searchable=False
+                                        ),
+                                        dcc.Store(id='store-anno-confronto-terzo')
+                                    ], width=4) 
                                 ]),
                             ])
                         ),
@@ -116,7 +136,7 @@ layout = dbc.Container([
                         is_open=False,
                     )
                 ],
-                className="shadow-sm rounded border mb-3"
+                className="rounded border mb-3"
             )
         )
     ),
@@ -139,14 +159,34 @@ layout = dbc.Container([
                 dbc.Col(
                         dbc.Card(
                             dbc.CardBody([
-                                html.H4(id={"type": "titolo", "index": idx}, className="card-title"),
-                                html.P(id={"type": "valore", "index": idx}, children="0 €", className="card-value text-green fw-bold"),
-                                html.P(id={"type": "saltato", "index": idx}, children="", className="card-variazione text-red text-center"),
+                                html.H4(id='card-titolo-primo', className="card-title"),
+                                html.P(id='card-valore-primo', children="0 €", className="card-value text-green fw-bold"),
+                                html.P(id='card-saltato-primo', children="", className="card-variazione text-red text-center"),
                             ]),
                         ),
-                        width=4
-                    )
-                    for idx in indici
+
+                    ),
+                dbc.Col(
+                        dbc.Card(
+                            dbc.CardBody([
+                                html.H4(id='card-titolo-secondo', className="card-title"),
+                                html.P(id='card-valore-secondo', children="0 €", className="card-value text-green fw-bold"),
+                                html.P(id='card-saltato-secondo', children="", className="card-variazione text-red text-center"),
+                            ]),
+                        ),
+
+                    ),
+                dbc.Col(
+                        dbc.Card(
+                            dbc.CardBody([
+                                html.H4(id='card-titolo-terzo', className="card-title"),
+                                html.P(id='card-valore-terzo', children="0 €", className="card-value text-green fw-bold"),
+                                html.P(id='card-saltato-terzo', children="", className="card-variazione text-red text-center"),
+                            ]),
+                        ),
+
+                    ),
+                    
             ]),
             html.Br(),
             # Bar chart
@@ -179,7 +219,10 @@ layout = dbc.Container([
             ]),
 
             # Tabelle dinamiche
-            dbc.Row([
+            
+        ]
+    ),
+    dbc.Row([
                 dbc.Col([
                     dcc.Store(id='store-tabella-settore'),
                     dcc.Store(id='store-tabella-origine'),
@@ -198,8 +241,6 @@ layout = dbc.Container([
                     )
                 ]),
             ])
-        ]
-    )
 ], fluid=True, className="mt-4", style={
     'fontFamily': 'Roboto, sans-serif',
     'marginBottom': '1em',
