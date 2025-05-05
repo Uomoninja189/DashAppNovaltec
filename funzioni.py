@@ -6,6 +6,7 @@ import re
 from dash import html
 from unidecode import unidecode
 import random
+from app import *
 
 mappa_mesi = {
         'Gen': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4,
@@ -33,7 +34,7 @@ colori1 = [
     '#5ac47d',  # Verde menta - rilassante, naturale
 ]
 
-colori = [
+colori2 = [
  '#ff6347',  # Rosso Pomodoro / Corallo chiaro (Rosso-Arancio)
  '#f2ad54',  # Arancio chiaro (Arancio)
  '#f8cb46',  # Giallo senape (Giallo)
@@ -46,10 +47,8 @@ colori = [
  '#eb3c89'   # Rosa acceso (Rosa/Magenta acceso)
 ]
 
-colonnaData = 'DATA'
-colonnaSettore='SETTORE'
-colonnaAgente='AGENTE'
-colonnaImponibile='IMPONIBILE'
+colori=colori2
+
 
 def carica_anni():
     folder = './'  
@@ -134,6 +133,8 @@ def pulisci_data(data):
     data['MOD']=data['MOD'].str.upper()
     data['Origine'] = data['Origine'].str.upper()
     data = data[~((data['IMPONIBILE'] == 0) | (data['IMPONIBILE'].isna()))]
+    data['MET. PAG.'] = data['MET. PAG.'].apply(lambda x: x.split('/')[-1] if isinstance(x, str) else x)
+    data['MET. PAG.']=data["MET. PAG."].str.upper()
 
     return data
 
@@ -151,9 +152,10 @@ def pulisci_mese(mesi):
 
 
 def aggiungi_colonna_tipo(data):
+
     data['Tipo'] = data.apply(
         lambda row: 
-            'Effettuata' if str(row['FT.']).startswith(('F', 'f')) 
+            'Effettuata' if str(row['FT.']).startswith(('F', 'f', 'D', 'd')) 
             else 'Saltata' if str(row['FT.']).strip().lower() == 'saltata' 
             else 'Altro', 
         axis=1
@@ -162,7 +164,7 @@ def aggiungi_colonna_tipo(data):
     data['Tipo'] = data.apply(lambda row: 'Saltata' if str(row['NOTE']).startswith('saltata') else row['Tipo'], axis=1)
     order = ['Effettuata', 'Altro', 'Saltata']
     data['Tipo'] = pd.Categorical(data['Tipo'], categories=order, ordered=True)
-
+    
     return data
 
 def riordina_per_mese(data):
@@ -263,10 +265,9 @@ def crea_barre_h(data, x, y, titolo, primo=None):
         y=y,
         title=titolo,
         color=y,
-        barmode='stack',
         color_discrete_sequence=spezza_sequenza(colori, primo),
         orientation='h',
-        hover_data={x: True, 'N° Vendite': True, y: False} 
+        hover_data={x: True, 'N° Vendite': True, y: True} 
     )
     fig.update_layout(
         showlegend=False,
