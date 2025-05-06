@@ -140,6 +140,9 @@ def aggiorna_dropdown_filtri(data1, data2, data3):
     dropdown_settore = [{"label": s, "value": s} for s in sorted(settori)]
     dropdown_origine = [{"label": o, "value": o} for o in sorted(origini)]
     dropdown_categoria = [{"label": c, "value": c} for c in sorted(categorie)]
+
+    ordine_completo = list((mesi_mappa).values())
+    mesi = sorted(mesi, key=lambda m: ordine_completo.index(m))
     dropdown_mese = [{"label": m, "value": m} for m in (mesi)]
 
     return dropdown_agente, dropdown_settore, dropdown_origine, dropdown_categoria, dropdown_mese
