@@ -79,7 +79,7 @@ layout = dbc.Container([
             dbc.Alert(id='salvataggio-status', is_open=False, duration=4000, children="")
         ])
     ),
-
+    html.Br(),
     dbc.Row(
         dbc.Col([
             dbc.Card([
